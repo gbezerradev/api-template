@@ -1,16 +1,14 @@
-import { z } from 'zod'
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { makeRegisterUseCase } from '@/core/use-cases/users/factories/make-register-use-case'
 import { UserAlreadyExistsError } from '@/core/use-cases/users/errors/user-alredy-exists'
+import { RegisterUserInput } from '../schemas/user-schema'
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
-  const registerBodySchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    password: z.string().min(6),
-  })
+export async function register(request: FastifyRequest<{
+  Body: RegisterUserInput
+}>, reply: FastifyReply) {
+  const { email, name, password } = request.body
 
-  const { email, name, password } = registerBodySchema.parse(request.body)
+  console.log('Registering user:', { email, name, password })
 
   try {
     const registerUseCase = makeRegisterUseCase()

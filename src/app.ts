@@ -5,7 +5,13 @@ import { ZodError } from 'zod'
 import { env } from './config/env'
 import { jwtPlugin } from './core/plugins/jwt'
 
-export const app = fastify()
+export const app = fastify({
+  ajv: {
+    customOptions: {
+      coerceTypes: true,
+    },
+  }
+})
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
@@ -19,6 +25,13 @@ app.setErrorHandler((error, request, reply) => {
     return reply
       .status(400)
       .send({ message: 'Validation error', issues: error.format() })
+  }
+
+  if (error.validation) {
+    return reply.status(400).send({
+      message: 'Validation failed',
+      issues: error.validation,
+    })
   }
 
   if (env.NODE_ENV !== 'production') {
