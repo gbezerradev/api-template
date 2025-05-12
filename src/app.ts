@@ -1,9 +1,17 @@
 import fastify from 'fastify'
+import fastifyJwt from '@fastify/jwt'
 import { appRoutes } from './core/http/routes'
 import { ZodError } from 'zod'
 import { env } from './config/env'
+import { jwtPlugin } from './core/plugins/jwt'
 
 export const app = fastify()
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+})
+
+app.decorate('authenticate', jwtPlugin)
 
 app.register(appRoutes)
 app.setErrorHandler((error, request, reply) => {
