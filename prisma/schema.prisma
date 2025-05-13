@@ -14,11 +14,25 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(uuid())
+  id            String        @id @default(uuid())
   name          String
-  email         String   @unique
+  email         String        @unique
   password_hash String
-  created_at    DateTime @default(now())
+  created_at    DateTime      @default(now())
+  Subscription  Subscription?
 
   @@map("users")
+}
+
+model Subscription {
+  id                   String   @id @default(cuid())
+  user_id              String   @unique
+  user                 User     @relation(fields: [user_id], references: [id])
+  status               String
+  plan                 String
+  external_id          String
+  current_period_start DateTime
+  current_period_end   DateTime
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
 }
