@@ -6,7 +6,7 @@ export class PrismaSubscriptionsRepository implements SubscriptionsRepository {
   async create(data: {
     userId: string
     status: string
-    plan: string
+    planId: string
     externalId: string
     currentPeriodStart: Date
     currentPeriodEnd: Date
@@ -15,7 +15,7 @@ export class PrismaSubscriptionsRepository implements SubscriptionsRepository {
       data: {
         user_id: data.userId,
         status: data.status,
-        plan: data.plan,
+        plan_id: data.planId,
         external_id: data.externalId,
         current_period_start: data.currentPeriodStart,
         current_period_end: data.currentPeriodEnd,

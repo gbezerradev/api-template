@@ -8,7 +8,7 @@ import {
   registerUserJsonSchema,
   userResponseJsonSchema,
 } from './schemas/user-schema'
-import { createSubscription } from './controllers/create-subscriptions'
+import { generateCheckout } from './controllers/generate-checkout'
 
 export async function appRoutes(app: FastifyInstance) {
   app.get('/health', async () => {
@@ -52,10 +52,10 @@ export async function appRoutes(app: FastifyInstance) {
   )
 
   app.post(
-    '/subscription',
+    '/subscription/checkout',
     {
       preHandler: [app.authenticate],
     },
-    createSubscription,
+    generateCheckout,
   )
 }

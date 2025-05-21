@@ -5,7 +5,7 @@ export interface SubscriptionsRepository {
   create(data: {
     userId: string
     status: string
-    plan: string
+    planId: string
     externalId: string
     currentPeriodStart: Date
     currentPeriodEnd: Date

@@ -3,9 +3,12 @@ import { makeRegisterUseCase } from '@/core/use-cases/users/factories/make-regis
 import { UserAlreadyExistsError } from '@/core/use-cases/users/errors/user-alredy-exists'
 import { RegisterUserInput } from '../schemas/user-schema'
 
-export async function register(request: FastifyRequest<{
-  Body: RegisterUserInput
-}>, reply: FastifyReply) {
+export async function register(
+  request: FastifyRequest<{
+    Body: RegisterUserInput
+  }>,
+  reply: FastifyReply,
+) {
   const { email, name, password } = request.body
 
   console.log('Registering user:', { email, name, password })

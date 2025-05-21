@@ -27,12 +27,23 @@ model User {
 model Subscription {
   id                   String   @id @default(cuid())
   user_id              String   @unique
-  user                 User     @relation(fields: [user_id], references: [id])
+  user                 User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   status               String
-  plan                 String
+  plan_id              String
+  plan                 Plan     @relation(fields: [plan_id], references: [id], onDelete: Cascade)
   external_id          String
   current_period_start DateTime
   current_period_end   DateTime
   created_at           DateTime @default(now())
   updated_at           DateTime @updatedAt
+}
+
+model Plan {
+  id           String         @id @default(uuid())
+  name         String         @unique
+  description  String
+  price        Int // em centavos (1500 = R$15)
+  periodDays   Int // 30, 180, 365
+  createdAt    DateTime       @default(now())
+  Subscription Subscription[]
 }
