@@ -9,6 +9,7 @@ import {
   userResponseJsonSchema,
 } from './schemas/user-schema'
 import { generateCheckout } from './controllers/generate-checkout'
+import { mercadoPagoWebhook } from './controllers/mercadopago-webhook'
 
 export async function appRoutes(app: FastifyInstance) {
   app.get('/health', async () => {
@@ -58,4 +59,6 @@ export async function appRoutes(app: FastifyInstance) {
     },
     generateCheckout,
   )
+
+  app.post('/webhooks/mercadopago', mercadoPagoWebhook)
 }

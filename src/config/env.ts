@@ -9,6 +9,7 @@ const envSchema = z.object({
   JWT_SECRET: z.string(),
   MERCADO_PAGO_ACCESS_TOKEN: z.string(),
   MERCADO_PAGO_PUBLIC_KEY: z.string(),
+  APP_URL: z.string().url(),
   // MERCADO_PAGO_CLIENT_ID: z.string(),
 })
 
