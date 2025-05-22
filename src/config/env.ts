@@ -7,6 +7,10 @@ const envSchema = z.object({
   DATABASE_URL: z.string(),
   HASH_SALT_ROUNDS: z.coerce.number().default(12),
   JWT_SECRET: z.string(),
+  MERCADO_PAGO_ACCESS_TOKEN: z.string(),
+  MERCADO_PAGO_PUBLIC_KEY: z.string(),
+  APP_URL: z.string().url(),
+  // MERCADO_PAGO_CLIENT_ID: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)

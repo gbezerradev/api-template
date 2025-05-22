@@ -1,4 +1,3 @@
-
 import { z } from 'zod'
 import { zodToJsonSchema } from 'zod-to-json-schema'
 
@@ -37,10 +36,13 @@ export const authenticateResponseSchema = z.object({
   }),
 })
 
-export const authenticateResponseJsonSchema = zodToJsonSchema(authenticateResponseSchema, {
-  target: 'jsonSchema7',
-  $refStrategy: 'none',
-})
+export const authenticateResponseJsonSchema = zodToJsonSchema(
+  authenticateResponseSchema,
+  {
+    target: 'jsonSchema7',
+    $refStrategy: 'none',
+  },
+)
 
 export type AuthenticateResponse = z.infer<typeof authenticateResponseSchema>
 
