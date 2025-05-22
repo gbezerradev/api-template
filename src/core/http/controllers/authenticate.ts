@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { InvalidCredentialsError } from '@/core/use-cases/users/errors/invalid-credentials-error'
 import { makeAuthenticateUseCase } from '@/core/use-cases/users/factories/make-authenticate-use-case'
-import { AuthenticateInput, AuthenticateResponse } from '../schemas/user-schema'
+import { AuthenticateInput } from '../schemas/user-schema'
 
 export async function authenticate(
   request: FastifyRequest<{ Body: AuthenticateInput }>,
@@ -16,7 +16,7 @@ export async function authenticate(
       password,
     })
 
-    const token = await reply.jwtSign({ sub: user.id }, { expiresIn: '7d'})
+    const token = await reply.jwtSign({ sub: user.id }, { expiresIn: '7d' })
 
     return reply.status(200).send({
       token,

@@ -65,10 +65,4 @@ export class MercadoPagoGateway implements PaymentGateway {
       checkoutUrl: result.init_point ?? '',
     }
   }
-
-  async cancelSubscription(externalId: string): Promise<void> {}
-
-  async getSubscription(externalId: string): Promise<SubscriptionData | null> {
-    return null
-  }
 }

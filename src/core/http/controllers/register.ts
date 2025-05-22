@@ -11,8 +11,6 @@ export async function register(
 ) {
   const { email, name, password } = request.body
 
-  console.log('Registering user:', { email, name, password })
-
   try {
     const registerUseCase = makeRegisterUseCase()
     await registerUseCase.execute({ email, name, password })

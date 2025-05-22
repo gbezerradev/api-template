@@ -11,6 +11,4 @@ export interface SubscriptionData {
 
 export interface PaymentGateway {
   createSubscription(userId: string, plan: Plan): Promise<SubscriptionData>
-  cancelSubscription(externalId: string): Promise<void>
-  getSubscription(externalId: string): Promise<SubscriptionData | null>
 }

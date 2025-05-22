@@ -7,7 +7,9 @@
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
     "test": "vitest",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

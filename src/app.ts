@@ -10,7 +10,7 @@ export const app = fastify({
     customOptions: {
       coerceTypes: true,
     },
-  }
+  },
 })
 
 app.register(fastifyJwt, {
